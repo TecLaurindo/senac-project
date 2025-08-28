@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="arquivos_relatorios/pasta_css/estilogui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Página de Login</title>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login Senac</h1>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Login:</label>
+                <input type="text" id="username" placeholder="Digite seu E-Mail" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Senha:</label>
+                <div class="input-container">
+                    <input type="password" id="password" placeholder="Mínimo 6 caracteres" name="password" required>
+                    <span class="eye-icon" id="togglePassword"><i class="fas fa-eye"></i></span>
+                </div>
+            </div>
+            <button type="submit" id="btm">Entrar</button>
+            <div id="error-message" style="color: red; display: none;"></div>
+        </form>
+        <div class="options">
+            <p>Ou faça login com:</p>
+            <a href="arquivos_relatorios/index12.html" target="_blank">SENAC</a>
+            <a href="arquivos_relatorios/indexcadastro2.html">CADASTRO</a>
+        </div>
+    </div>
+    <footer>
+        &COPY; 2025 RAVS
+    </footer>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Impede o envio do formulário
+
+            // Obtém os valores dos campos
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Validação simples (substitua com sua lógica de autenticação)
+            if (username === "david.barros@gmail.com" && password === "senha123") {
+                // Redireciona para a página do aluno
+                window.location.href ="arquivos_relatorios/indexaluno2.html"; // caminho relativo com barras normais
+            } else {
+                // Exibe mensagem de erro
+                const errorMessage = document.getElementById("error-message");
+                errorMessage.textContent = "Usuário ou senha incorretos.";
+                errorMessage.style.display = "block";
+
+                // Limpa os campos de usuário e senha
+                document.getElementById("username").value = '';
+                document.getElementById("password").value = '';
+            }
+        });
+
+        // Lógica para mostrar/ocultar a senha
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+
+        togglePassword.addEventListener("click", function() {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text"; // Muda para texto
+                togglePassword.innerHTML = '<i class="fas fa-eye-slash"></i>'; // Muda o ícone para ocultar
+            } else {
+                passwordInput.type = "password"; // Muda para senha
+                togglePassword.innerHTML = '<i class="fas fa-eye"></i>'; // Muda o ícone para mostrar
+            }
+        });
+    </script>
+</body>
+</html>
