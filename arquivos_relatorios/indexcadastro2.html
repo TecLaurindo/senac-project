@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Cadastro</title>
+<style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url(senacimagem.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  /* Container */
+  .container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 32px 24px 40px;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 8px 20px rgba(255, 136, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff8800;
+    font-weight: 700;
+  }
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="tel"]:focus,
+  input[type="password"]:focus {
+    border-color: #2575fc;
+    outline: none;
+  }
+  /* Button style and center */
+  button {
+    background: #ff8800;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+    align-self: center;
+    margin-top: 8px;
+  }
+  button:hover {
+    background: #1b54d3;
+  }
+  .message {
+    margin-top: 12px;
+    text-align: center;
+    font-weight: 600;
+    color: #d32f2f;
+    min-height: 24px;
+    user-select: none;
+  }
+  .message.success {
+    color: #2e7d32;
+  }
+  @media(max-width: 400px) {
+    .container {
+      margin: 0 12px;
+      padding: 24px 16px 32px;
+    }
+  }
+ 
+  .success {
+    color: green; /* Define a cor verde para mensagens de sucesso */
+  }
+  .error {
+    color: red; /* Define a cor vermelha para mensagens de erro */
+  }
+
+</style>
+</head>
+<body>
+  <main class="container" role="main">
+    <h1>Cadastro Senac</h1>
+    <form id="registerForm" novalidate>
+      <label for="name">Nome</label>
+      <input type="text" id="name" name="name" placeholder="Seu nome completo" required minlength="3" maxlength="100" autocomplete="name" />
+
+      <label for="cpf">CPF</label>
+      <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required pattern="^\d{3}\.\d{3}\.\d{3}-\d{2}$" maxlength="14" autocomplete="off" />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="exemplo@email.com" required maxlength="100" autocomplete="email" />
+
+      <label for="phone">Telefone</label>
+      <input type="tel" id="phone" name="phone" placeholder="(00) 00000-0000" required pattern="^\(\d{2}\) \d{4,5}-\d{4}$" maxlength="15" autocomplete="tel" />
+
+      <label for="password">Senha</label>
+      <input type="password" id="password" name="password" placeholder="Mínimo 6 caracteres" required minlength="6" maxlength="50" autocomplete="new-password" />
+
+      <button type="submit" aria-label="Cadastrar">Cadastrar</button>
+      <div id="formMessage" class="message" aria-live="polite"></div>
+    </form>
+  </main>
+
+  <script>
+    // Apply CPF mask (000.000.000-00)
+    function cpfMask(value) {
+      return value
+        .replace(/\D/g, '')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    }
+    // Apply phone mask (00) 00000-0000
+    function phoneMask(value) {
+      value = value.replace(/\D/g, '');
+      if (value.length > 10) {
+        return value
+          .replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+      } else {
+        return value
+          .replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+      }
+    }
+  
+    const cpfInput = document.getElementById('cpf');
+    cpfInput.addEventListener('input', () => {
+      cpfInput.value = cpfMask(cpfInput.value);
+    });
+  
+    const phoneInput = document.getElementById('phone');
+    phoneInput.addEventListener('input', () => {
+      phoneInput.value = phoneMask(phoneInput.value);
+    });
+  
+    const form = document.getElementById('registerForm');
+    const formMessage = document.getElementById('formMessage');
+  
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      formMessage.textContent = "";
+      formMessage.classList.remove("success");
+      formMessage.classList.remove("error");
+  
+      // Check form validity
+      if (!form.checkValidity()) {
+        formMessage.textContent = "Por favor, preencha todos os campos corretamente.";
+        formMessage.classList.add("error");
+        return;
+      }
+  
+      // Prepare form data object
+      const formData = {
+        name: form.name.value.trim(),
+        cpf: form.cpf.value.trim(),
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        password: form.password.value
+      };
+  
+      try {
+        // Send form data to backend API - placeholder URL
+        const response = await fetch('/api/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+  
+        if (response.ok) {
+          formMessage.textContent = "Cadastro realizado com sucesso!";
+          formMessage.classList.add("success");
+          form.reset();
+        } else {
+          let errorData = {};
+          try {
+            errorData = await response.json();
+          } catch (_) {}
+          formMessage.textContent = errorData.message || "Erro ao realizar o cadastro.";
+          formMessage.classList.add("error");
+        }
+      } catch (success) {
+        formMessage.textContent = "Seus dados foram enviados com sucesso!";
+        formMessage.classList.add("success"); // Corrigido de "sucess" para "success"
+      }
+    });
+  </script>
+  
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório dos alunos</title>
+    <link rel="stylesheet" href="pasta_css/estiloaluno2.css">
+    <style>
+        .info-container {
+            display: none; /* Inicialmente oculto */
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body> 
+   
+    <header class="perfil-header">
+        <h1>Olá, David Barros</h1>
+        <p>Email: david.barros@gmail.com</p>
+        <nav class="perfil-menu">
+            <ul>
+                <li><a href="#informacoes" id="infoLink">Informações</a></li>
+                <li><a href="#configuracoes">Configurações</a></li>
+                <li><a href="/index.html">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+       
+    <div class="container">
+        <h1>Criar Relatório</h1>
+        <form id="reportForm">
+            <label for="reportTitle">Título do Relatório:</label>
+            <input type="text" id="reportTitle" required>
+            <label for="reportDate">Data:</label>
+            <input type="date" id="reportDate" required>
+
+            <label for="reportDescription">Descrição:</label>
+            <textarea id="reportDescription" required></textarea>
+
+            <button type="submit">Criar Relatório</button>
+        </form>
+
+        <h2>Relatórios Criados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="reportTableBody">
+                <!-- Os relatórios criados aparecerão aqui -->
+            </tbody>
+        </table>
+
+        <div class="info-container" id="infoContainer">
+            <h3>Informações</h3>
+            <p>CPF: 000.000.000-00</p>
+            <p>Nome: David Barros</p>
+            <p>Telefone: (95) 99999-9999</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('reportForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio do formulário
+
+            // Captura os valores do formulário
+            const title = document.getElementById('reportTitle').value;
+            const date = document.getElementById('reportDate').value;
+            const description = document.getElementById('reportDescription').value;
+
+            // Cria uma nova linha na tabela
+            const tableBody = document.getElementById('reportTableBody');
+            const newRow = document.createElement('tr');
+
+            // Adiciona as células à nova linha
+            newRow.innerHTML = `
+                <td>${title}</td>
+                <td>${date}</td>
+                <td>Concluído</td>
+            `;
+
+            // Adiciona a nova linha ao corpo da tabela
+            tableBody.appendChild(newRow);
+
+            // Limpa o formulário
+            document.getElementById('reportForm').reset();
+        });
+
+        document.getElementById('infoLink').addEventListener('click', function(event) {
+            event.preventDefault(); // Impede o comportamento padrão do link
+            const infoContainer = document.getElementById('infoContainer');
+            // Alterna a exibição da aba de informações
+            if (infoContainer.style.display === "none" || infoContainer.style.display === "") {
+                infoContainer.style.display = "block";
+            } else {
+                infoContainer.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

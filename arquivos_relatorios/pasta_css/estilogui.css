@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    background: url(arquivo-teste-da-TI_Webservice.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 32px 24px 40px;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 8px 20px rgba(48, 44, 39, 0.4);
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 91%;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #2575fc;
+    outline: none;
+}
+input {
+    width: 91%;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    
+}
+#btm{
+    background: #ff8800;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+    align-self: center;
+    margin-top: 8px;
+}
+
+button {
+    background: #ff8800;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+#btm:hover {
+    background: #1b54d3;
+}
+
+button:hover {
+    background-color: #ff8800;
+}
+
+.options {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.options a {
+    display: inline-block;
+    margin: 5px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+
+footer{
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 2px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.input-container {
+    position: relative;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff8800;
+    font-weight: 700;
+}
+
+.error-message {
+    margin-top: 12px;
+    text-align: center;
+    font-weight: 600;
+    color: #d32f2f;
+    min-height: 24px;
+    user-select: none;
+}

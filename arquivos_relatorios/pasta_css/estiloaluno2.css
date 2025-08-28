@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    background: url(plano\ de\ fundo\ Senac\ Asa\ Branca.png);
+    background-size: 100%;
+    /*margin: 20px;
+    padding: 20px;
+    border: 8px;
+    flex-wrap: wrap;*/
+    
+}
+body{
+     justify-content: flex-start;
+     align-items: flex-start;
+ 
+}
+
+
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    border: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+}
+
+input, textarea, select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+
+
+.perfil-header {
+    background: rgba(240, 248, 255, 0.438);
+    color: rgb(0, 0, 0);
+    width: 100%;
+    padding: 20px;
+    border-radius: 8px 8px 0 0;
+  
+}
+
+.perfil-header h1 {
+    margin: 0;
+}
+
+.perfil-header p {
+    margin: 5px 0 15px;
+}
+
+.perfil-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.perfil-menu li {
+    display: inline;
+    margin-right: 15px;
+}
+
+.perfil-menu a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.perfil-menu a:hover {
+    text-decoration: underline;
+}
+
+.perfil-conteudo {
+    padding: 20px;
+}
+
+.perfil-conteudo h2 {
+    margin-top: 0;
+}

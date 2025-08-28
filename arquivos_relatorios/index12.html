@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="pasta_css/estilopg.css" />
+    <title>Relatórios da Empresa</title>
+    <style>
+        /* Estilos para linhas aprovadas e rejeitadas */
+        tr.approved {
+            background-color: #d4edda; /* verde claro */
+            color: #155724; /* verde escuro */
+        }
+        tr.rejected {
+            background-color: #f8d7da; /* vermelho claro */
+            color: #721c24; /* vermelho escuro */
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="perfil-header">
+        <h1>Olá, SENAC</h1>
+
+        <nav class="perfil-menu">
+            <ul>
+                <li><a href="#informacoes">Informações</a></li>
+                <li><a href="#configuracoes">Configurações</a></li>
+                <li><a href="Pasta_github/index.html">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+   
+    <div class="container">
+        <h1>Relatórios do Senac</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Relatório</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Relatório Mensal do David</td>
+                    <td>Pendente</td>
+                    <td>
+                        <button class="approve">Aprovar</button>
+                        <button class="reject">Rejeitar</button>
+                        <a href="\\SFLAB04-01\Professor\Hemerson Furlin\Programador Web\02 - Projects Alunos\Grupo 01 - relatórios\SITE PROTOTIPO\Pasta_github_real\arquivos_relatorios\index11.html"><button class="view-report" style="color: blue;">Ver Relatório</button></a>
+                    </td>
+                </tr>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const approveButtons = document.querySelectorAll('button.approve');
+        const rejectButtons = document.querySelectorAll('button.reject');
+        const viewButtons = document.querySelectorAll('button.view-report');
+    
+        function getReportName(button) {
+            const tr = button.closest('tr');
+            return tr.cells[1].textContent.trim();
+        }
+    
+        approveButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tr = button.closest('tr');
+                const reportName = getReportName(button);
+    
+                // Atualiza o status para "Aprovado"
+                tr.cells[2].textContent = 'Aprovado';
+    
+                // Remove todos os botões da célula de ações
+                const actionCell = tr.querySelector('td:last-child');
+                actionCell.innerHTML = '';
+    
+                // Adiciona classe para estilizar a linha como aprovada
+                tr.classList.remove('rejected');
+                tr.classList.add('approved');
+    
+                alert(`Você aprovou ${reportName}.`);
+            });
+        });
+    
+        rejectButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tr = button.closest('tr');
+                const reportName = getReportName(button);
+    
+                // Atualiza o status para "Rejeitado"
+                tr.cells[2].textContent = 'Rejeitado';
+    
+                // Remove todos os botões da célula de ações
+                const actionCell = tr.querySelector('td:last-child');
+                actionCell.innerHTML = '';
+    
+                // Adiciona classe para estilizar a linha como rejeitada
+                tr.classList.remove('approved');
+                tr.classList.add('rejected');
+    
+                alert(`Você rejeitou ${reportName}.`);
+            });
+        });
+    
+        viewButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const reportName = getReportName(button);
+                alert(`${reportName}.`);
+            });
+        });
+    </script>
+</body>
+</html>
